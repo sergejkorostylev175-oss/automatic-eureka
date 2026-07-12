@@ -1,4 +1,7 @@
-# profile-title : 🏳️ОБХОД ГЛУШИЛОК 🏳️ WHITE LISTS | CIDR | Mobile-150-(1)
+# profile-title : 🏳️ОБХОД ГЛУШИЛОК 🏳️ | ОБХОД ГЛУШИЛОК
+quota=∞ 
+Mobile-150-(1)
+
 # profile-update-interval: 24
 # Date/Time: 2026-07-12 / 14:24 (Moscow)
 # Количество: 150
