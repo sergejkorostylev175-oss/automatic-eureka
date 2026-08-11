@@ -5,7 +5,106 @@ content-type: application/json
 content-length: 3798
 content-disposition: attachment; filename="213"
 sub-expire: 1
-sub-expire-button-link: https://t.me/generate
-vless://c2db3bf5-1ab3-4010-9a69-d5c631268455@cms.strashirdi.com:8447?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&sni=cms.strashirdi.com&fp=firefox&pbk=eKyUyIzbzn0TL5ip_00Buvum95qnWy8gTCwjZvv-olc&sid=3f7b1e5a9c2d8f46#🇩🇪 Германия Frankfurt
-vless://095c1c3b-9e1b-4f01-9be6-d33fdef1180a@voop.tdvin.com:443?encryption=none&security=tls&sni=voop.tdvin.com&fp=chrome&alpn=h2&type=grpc&serviceName=mygrpc#proxy
-vless://095c1c3b-9e1b-4f01-9be6-d33fdef1180a@5.129.243.225:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=mstde.tdvin.com&fp=qq&pbk=8UuggclWEj6kmrWsZ02rhYSc_psqpgxh6p51nT_OYQY&sid=2fa5af8517aba419&type=tcp#proxy
+sub-expire-button-link:
+{
+  "dns": {
+    "servers": [
+      "1.1.1.1",
+      "1.0.0.1"
+    ],
+    "queryStrategy": "UseIP"
+  },
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "protocol": [
+          "bittorrent"
+        ],
+        "outboundTag": "direct"
+      }
+    ],
+    "domainMatcher": "hybrid",
+    "domainStrategy": "IPIfNonMatch"
+  },
+  "inbounds": [
+    {
+      "tag": "socks",
+      "port": 10808,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": true,
+        "auth": "noauth"
+      },
+      "sniffing": {
+        "enabled": true,
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "http",
+      "port": 10809,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "settings": {
+        "allowTransparent": false
+      },
+      "sniffing": {
+        "enabled": true,
+        "routeOnly": false,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "5.129.243.225",
+            "port": 443,
+            "users": [
+              {
+                "id": "095c1c3b-9e1b-4f01-9be6-d33fdef1180a",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {},
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "mstde.tdvin.com",
+          "publicKey": "8UuggclWEj6kmrWsZ02rhYSc_psqpgxh6p51nT_OYQY",
+          "shortId": "2fa5af8517aba419",
+          "fingerprint": "qq"
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
+    }
+  ],
+  "remarks": "🇩🇪 Frankfurt"
+}
